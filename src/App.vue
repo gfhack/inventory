@@ -9,4 +9,4 @@
   </div>
 </template>
 
-<style scope lang="scss"></style>
+<style src="./assets/main.css"></style>
