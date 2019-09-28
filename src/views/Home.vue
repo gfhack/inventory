@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import List from "@/components/List";
+import List from "@/components/List/List";
 
 export default {
   name: "home",

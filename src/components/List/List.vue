@@ -13,7 +13,7 @@
 
 <script>
 import axios from "axios";
-import Item from "@/components/Item";
+import Item from "@/components/List/Item";
 
 export default {
   name: "products-list",
