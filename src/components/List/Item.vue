@@ -1,9 +1,14 @@
 <template lang="html">
-  <li>
-    {{ product.title }}
-    <button @click="add()" class="nes-btn">
-      {{ product.amount }}
-    </button>
+  <li class="flex items-stretch h-16">
+    <div class="flex-1 px-4 py-2 m-2">
+      {{ product.title }}
+    </div>
+
+    <div class="flex-1 m-2">
+      <button @click="add()" class="nes-btn float-right">
+        {{ product.amount }}
+      </button>
+    </div>
   </li>
 </template>
 

@@ -1,7 +1,8 @@
 <template>
   <div class="px-4">
-    <nav>
-      <router-link to="/">Home</router-link>
+    <nav class="py-4">
+      <router-link class="px-4" to="/">Principal</router-link>
+      <router-link class="px-4" to="/products">Produtos</router-link>
     </nav>
     <main>
       <router-view />

@@ -2,18 +2,18 @@
   "products": [
     {
       "id": 1,
-      "amount": 10,
-      "title": "Produto 1"
+      "amount": 15,
+      "title": "Fone"
     },
     {
       "id": 2,
-      "amount": 10,
-      "title": "Produto 2"
+      "amount": 15,
+      "title": "Café"
     },
     {
       "id": 3,
-      "amount": 10,
-      "title": "Produto 3"
+      "amount": 15,
+      "title": "Hamburguer"
     }
   ]
 }
