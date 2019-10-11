@@ -3,6 +3,13 @@
     <p class="title">
       Bem-vindo ao seu Inventário!
     </p>
+    <button v-if="!loaded" @click="showChart()" class="nes-btn is-primary">
+      Mostrar
+    </button>
+    <button v-else @click="hideChart()" class="nes-btn is-warning">
+      Esconder
+    </button>
+
     <chart-bar
       v-if="loaded"
       :chart-data="chartData"
@@ -14,11 +21,22 @@
 </template>
 
 <script>
+import store from "@/store";
 import { mapActions, mapGetters } from "vuex";
 import Bar from "@/components/Charts/Bar";
 
 export default {
   name: "home",
+
+  beforeRouteEnter(to, from, next) {
+    if (!store.getters.logged) next("/login");
+    else next();
+  },
+
+  beforeRouteLeave(to, from, next) {
+    store.dispatch("setLoaded", false);
+    next();
+  },
 
   components: {
     "chart-bar": Bar
@@ -29,19 +47,23 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["loaded", "options", "chartData"])
+    ...mapGetters(["loaded", "options", "chartData", "logged"])
   },
 
   created() {
     this.fetchProducts();
   },
 
-  activated() {
-    this.setLoaded(true);
-  },
-
   methods: {
-    ...mapActions(["fetchProducts", "setLoaded"])
+    ...mapActions(["fetchProducts", "setLoaded"]),
+
+    showChart() {
+      this.setLoaded(true);
+    },
+
+    hideChart() {
+      this.setLoaded(false);
+    }
   }
 };
 </script>

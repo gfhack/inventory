@@ -1,9 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Home from "./views/Home.vue";
-import Products from "./views/Products.vue";
-
 Vue.use(Router);
 
 export default new Router({
@@ -11,21 +8,19 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "/login",
+      name: "login",
+      component: () => import("./views/Login.vue")
+    },
+    {
       path: "/",
       name: "home",
-      component: Home
+      component: () => import("./views/Home.vue")
     },
     {
       path: "/products",
       name: "products",
-      component: Products
+      component: () => import("./views/Products.vue")
     }
-    // ,
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   component: () =>
-    //     import(/* webpackChunkName: "about" */ "./views/About.vue")
-    // }
   ]
 });

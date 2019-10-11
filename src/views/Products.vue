@@ -37,12 +37,17 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapActions } from "vuex";
+import store from "@/store";
+import { mapActions, mapGetters } from "vuex";
 import List from "@/components/List/List";
 
 export default {
   name: "product",
+
+  beforeRouteEnter(to, from, next) {
+    if (!store.getters.logged) next("/login");
+    else next();
+  },
 
   components: {
     "product-list": List
@@ -55,19 +60,18 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["logged"])
+  },
+
   methods: {
-    ...mapActions(["fetchProducts", "setLoaded"]),
+    ...mapActions(["fetchProducts", "storeProduct", "setLoaded"]),
 
     saveProduct() {
-      axios
-        .post("http://localhost:3000/products", {
-          title: this.title,
-          amount: this.amount
-        })
-        .then(() => {
-          this.setLoaded(false);
-          this.fetchProducts();
-        });
+      this.storeProduct({
+        title: this.title,
+        amount: this.amount
+      });
     }
   }
 };
