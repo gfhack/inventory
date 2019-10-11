@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
 import Bar from "@/components/Charts/Bar";
 
 export default {
@@ -25,32 +25,23 @@ export default {
   },
 
   data() {
-    return {
-      loaded: false,
-      options: {},
-      chartData: {}
-    };
+    return {};
+  },
+
+  computed: {
+    ...mapGetters(["loaded", "options", "chartData"])
   },
 
   created() {
-    axios
-      .get("http://localhost:3000/products")
-      .then(response => {
-        this.chartData.labels = response.data.map(product => {
-          return product.title;
-        });
+    this.fetchProducts();
+  },
 
-        this.chartData.datasets = [
-          {
-            data: response.data.map(product => product.amount),
-            label: "Produtos",
-            backgroundColor: "#f87979"
-          }
-        ];
-      })
-      .finally(() => {
-        this.loaded = true;
-      });
+  activated() {
+    this.setLoaded(true);
+  },
+
+  methods: {
+    ...mapActions(["fetchProducts", "setLoaded"])
   }
 };
 </script>

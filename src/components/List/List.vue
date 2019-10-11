@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapGetters } from "vuex";
 import Item from "@/components/List/Item";
 
 export default {
@@ -22,16 +22,8 @@ export default {
     "product-list-tem": Item
   },
 
-  data() {
-    return {
-      products: []
-    };
-  },
-
-  mounted() {
-    axios.get("http://localhost:3000/products").then(response => {
-      this.products = response.data;
-    });
+  computed: {
+    ...mapGetters(["products"])
   }
 };
 </script>

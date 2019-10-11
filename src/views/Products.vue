@@ -7,6 +7,7 @@
     <div class="nes-container mb-4">
       <div class="nes-field">
         <input
+          v-model="title"
           id="name_field"
           type="text"
           class="nes-input"
@@ -16,6 +17,7 @@
 
       <div class="mt-4">
         <input
+          v-model="amount"
           id="name_field"
           type="number"
           class="nes-input"
@@ -24,7 +26,7 @@
       </div>
 
       <div class="mt-4">
-        <button type="button" class="nes-btn is-success">
+        <button @click="saveProduct()" type="button" class="nes-btn is-success">
           Comprar!
         </button>
       </div>
@@ -35,6 +37,8 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapActions } from "vuex";
 import List from "@/components/List/List";
 
 export default {
@@ -42,6 +46,29 @@ export default {
 
   components: {
     "product-list": List
+  },
+
+  data() {
+    return {
+      title: "",
+      amount: null
+    };
+  },
+
+  methods: {
+    ...mapActions(["fetchProducts", "setLoaded"]),
+
+    saveProduct() {
+      axios
+        .post("http://localhost:3000/products", {
+          title: this.title,
+          amount: this.amount
+        })
+        .then(() => {
+          this.setLoaded(false);
+          this.fetchProducts();
+        });
+    }
   }
 };
 </script>
