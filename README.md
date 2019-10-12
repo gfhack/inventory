@@ -1,4 +1,12 @@
-# inventory
+# Inventory - Projeto de Pós Graduação em Desenvolvimento Web e Mobile - Guairacá 2019
+
+## This project uses:
+ - Vue
+ - Vue Router
+ - Vuex
+ - Vue ChartJs
+ - TailwindCss
+ - Nes Css
 
 ## Project setup
 ```
@@ -10,30 +18,7 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Instantiate the local database
 ```
-npm run build
+json-server --watch db.json
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
