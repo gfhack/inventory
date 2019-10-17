@@ -1,40 +1,40 @@
 <template>
-  <div class="nes-container with-title">
-    <p class="title">
-      Login
-    </p>
+  <v-row align="center" justify="center">
+    <v-col cols="12" sm="8" md="4">
+      <v-card class="elevation-12">
+        <v-toolbar color="primary" dark flat>
+          <v-toolbar-title>
+            Acesso
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+        </v-toolbar>
+        <v-card-text>
+          <v-form>
+            <v-text-field
+              v-model="name"
+              label="Usuário"
+              name="login"
+              type="text"
+            ></v-text-field>
 
-    <div class="">
-      <div class="nes-field">
-        <label for="user">
-          Usuário
-        </label>
-        <input v-model="name" type="text" id="user" class="nes-input" />
-      </div>
-
-      <div class="nes-field">
-        <label for="name_field">
-          Senha
-        </label>
-        <input
-          v-model="password"
-          type="password"
-          id="password"
-          class="nes-input"
-        />
-      </div>
-
-      <div class="mt-3">
-        <button
-          @click="login({ name, password })"
-          type="button"
-          class="nes-btn is-success"
-        >
-          Entrar
-        </button>
-      </div>
-    </div>
-  </div>
+            <v-text-field
+              v-model="password"
+              id="password"
+              label="Senha"
+              name="password"
+              type="password"
+            ></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn @click="login({ name, password })" color="primary">
+            Entrar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

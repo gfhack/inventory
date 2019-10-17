@@ -1,56 +1,29 @@
 <template>
-  <div class="nes-container with-title">
-    <p class="title">
-      Produtos!
-    </p>
+  <v-row justify="center">
+    <ProductForm />
 
-    <div class="nes-container mb-4">
-      <div class="nes-field">
-        <input
-          v-model="title"
-          id="name_field"
-          type="text"
-          class="nes-input"
-          placeholder="Nome do produto"
-        />
-      </div>
-
-      <div class="mt-4">
-        <input
-          v-model="amount"
-          id="name_field"
-          type="number"
-          class="nes-input"
-          placeholder="Quantidade"
-        />
-      </div>
-
-      <div class="mt-4">
-        <button @click="saveProduct()" type="button" class="nes-btn is-success">
-          Comprar!
-        </button>
-      </div>
-    </div>
-
-    <product-list />
-  </div>
+    <ProductTable />
+  </v-row>
 </template>
 
 <script>
 import store from "@/store";
 import { mapActions, mapGetters } from "vuex";
-import List from "@/components/List/List";
+
+import ProductForm from "@/components/Product/Form";
+import ProductTable from "@/components/Product/Table";
 
 export default {
   name: "product",
 
+  components: {
+    ProductForm,
+    ProductTable
+  },
+
   beforeRouteEnter(to, from, next) {
     if (!store.getters.logged) next("/login");
     else next();
-  },
-
-  components: {
-    "product-list": List
   },
 
   data() {
@@ -61,7 +34,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["logged"])
+    ...mapGetters(["logged", "products"])
+  },
+
+  mounted() {
+    this.fetchProducts();
   },
 
   methods: {

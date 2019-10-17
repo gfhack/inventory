@@ -70,7 +70,7 @@ export default new Vuex.Store({
 
         if (user) {
           context.commit("login", user);
-          router.push("/");
+          router.push("/products");
         }
       });
     },
