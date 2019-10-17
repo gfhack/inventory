@@ -2,7 +2,19 @@
   <v-app>
     <v-navigation-drawer v-if="logged" v-model="drawer" app clipped>
       <v-list dense>
-        <v-list-item @click="">
+        <v-list-item :to="{ name: 'profile' }" link>
+          <v-list-item-action>
+            <v-icon>
+              mdi-face
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              Perfil
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item :to="{ name: 'products' }" link>
           <v-list-item-action>
             <v-icon>
               mdi-shopping
@@ -18,7 +30,10 @@
     </v-navigation-drawer>
 
     <v-app-bar app>
-      <v-app-bar-nav-icon v-if="logged" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="logged"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span class="font-weight-light">
           INVENTORY
@@ -36,21 +51,16 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Login from './views/Login';
 
 export default {
-  name: 'App',
-
-  components: {
-    Login,
-  },
+  name: "App",
 
   computed: {
     ...mapGetters(["logged"])
   },
 
   data: () => ({
-    drawer: false,
-  }),
+    drawer: false
+  })
 };
 </script>

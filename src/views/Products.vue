@@ -1,8 +1,7 @@
 <template>
   <v-row justify="center">
-    <ProductForm />
-
     <ProductTable />
+    <ProductForm />
   </v-row>
 </template>
 
@@ -22,19 +21,12 @@ export default {
   },
 
   beforeRouteEnter(to, from, next) {
-    if (!store.getters.logged) next("/login");
+    if (!store.getters.logged) next("/");
     else next();
   },
 
-  data() {
-    return {
-      title: "",
-      amount: null
-    };
-  },
-
   computed: {
-    ...mapGetters(["logged", "products"])
+    ...mapGetters(["logged"])
   },
 
   mounted() {
@@ -42,14 +34,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchProducts", "storeProduct", "setLoaded"]),
-
-    saveProduct() {
-      this.storeProduct({
-        title: this.title,
-        amount: this.amount
-      });
-    }
+    ...mapActions(["fetchProducts"])
   }
 };
 </script>

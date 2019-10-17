@@ -20,7 +20,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary">
+        <v-btn @click="saveProduct()" color="primary">
           Cadastrar
         </v-btn>
       </v-card-actions>
@@ -29,4 +29,25 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
+export default {
+  data() {
+    return {
+      title: "",
+      amount: null
+    };
+  },
+
+  methods: {
+    ...mapActions(["storeProduct"]),
+
+    saveProduct() {
+      this.storeProduct({
+        title: this.title,
+        amount: this.amount
+      });
+    }
+  }
+};
 </script>
