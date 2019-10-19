@@ -24,7 +24,7 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development - Para rodar o projeto e servir em localhost:8080
-```node
+```
 npm run serve
 ```
 
