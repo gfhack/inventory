@@ -31,6 +31,10 @@ export default new Vuex.Store({
       state.user = user;
     },
 
+    logout(state) {
+      state.user = null;
+    },
+
     setLoaded(state, loaded) {
       state.loaded = loaded;
     },
@@ -61,6 +65,11 @@ export default new Vuex.Store({
   },
 
   actions: {
+    logout(context) {
+      context.commit("logout");
+      router.push("/");
+    },
+
     login(context, payload) {
       axios.get("http://localhost:3000/users").then(response => {
         const user = response.data.find(

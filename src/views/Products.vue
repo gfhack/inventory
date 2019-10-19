@@ -2,6 +2,7 @@
   <v-row justify="center">
     <ProductTable />
     <ProductForm />
+    <ProductChart />
   </v-row>
 </template>
 
@@ -10,6 +11,7 @@ import store from "@/store";
 import { mapActions, mapGetters } from "vuex";
 
 import ProductForm from "@/components/Product/Form";
+import ProductChart from "@/components/Product/Chart";
 import ProductTable from "@/components/Product/Table";
 
 export default {
@@ -17,6 +19,7 @@ export default {
 
   components: {
     ProductForm,
+    ProductChart,
     ProductTable
   },
 

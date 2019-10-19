@@ -1,12 +1,13 @@
 <template>
   <v-col cols="12" sm="8" md="4">
-    <v-card class="elevation-12">
+    <v-card class="elevation-12" shaped>
       <v-card-text>
-        <v-form>
+        <v-form v-model="valid">
           <v-text-field
             v-model="title"
             label="Título"
             name="title"
+            :rules="ruleText"
             type="text"
           ></v-text-field>
 
@@ -15,6 +16,7 @@
             label="Quantidade"
             name="number"
             type="number"
+            :rules="ruleNumber"
           ></v-text-field>
         </v-form>
       </v-card-text>
@@ -35,7 +37,16 @@ export default {
   data() {
     return {
       title: "",
-      amount: null
+      amount: null,
+      valid: true,
+      ruleText: [v => !!v || "Preenchimento obrigatório"],
+      ruleNumber: [
+        v => !!v || "Preenchimento obrigatório",
+        value => {
+          const pattern = /[1-9]+/;
+          return pattern.test(value) || "Deve ser maior que zero";
+        }
+      ]
     };
   },
 

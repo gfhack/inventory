@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" sm="8" md="6">
-    <v-card class="elevation-12">
+    <v-card class="elevation-12" shaped>
       <v-card-text>
         <v-simple-table>
           <template v-slot:default>

@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" sm="6" md="4">
-    <v-card class="elevation-12">
+    <v-card class="elevation-12" shaped>
       <v-card-text>
         <v-img
           src="@/assets/crews.png"
